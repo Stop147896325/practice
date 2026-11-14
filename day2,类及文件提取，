@@ -1,0 +1,86 @@
+#昨天内容的复习
+
+class student:
+    def __init__(self,name,student_id):
+        self.name=name
+        self.student_id=student_id
+        self.grades ={"语文":0,"数学":0,"英语":0}
+
+    def set_grade(self,course,grade):
+
+       if course in self.grades:
+            self.grades[course]=grade
+
+chen=student("小陈","2026")
+print(chen.name)
+print(chen.student_id)
+
+chen.set_grade("数学","95")
+
+print(chen.grades)
+
+#类的继承(妈呀怎么有那么多要注意的）
+
+class emploee:
+    def __init__(self,name,employee_id):
+        self.name=name
+        self.employee_id=employee_id
+
+    def print_info(self):
+        print(f"你好！{self.name},你的工号为{self.employee_id}")
+
+class full(emploee) :
+    def __init__(self,name, employee_id,month_salary):
+        super().__init__(name, employee_id)
+        self.month_salary=month_salary
+
+    def calculate(self):
+        print(f"你的薪资是{self.month_salary}")
+
+class daily(emploee) :
+    def __init__(self,name,employee_id,daily_salary,worke_day):
+        super().__init__(name, employee_id)
+        self.daily_salary = daily_salary
+        self.worke_day = worke_day
+
+    def calculate(self):
+        money=self.daily_salary*self.worke_day
+
+        print(f"你的薪资是{money}")
+
+emploee1=full("小红",13,3000)
+emploee1.print_info()
+emploee1.calculate()
+
+emploee2=daily("小明",25,120,10)
+
+emploee2.print_info()
+emploee2.calculate()
+
+#读取文件（我要吐了，史上最好记最简单最完美的文件读写操作来喽）
+#本来是将进酒,已证明可用
+
+f=open(r".\data.txt",'r',encoding="utf-8")
+print(f.read())#第一种方式
+f.close()
+
+f=open(r".\data.txt",'r',encoding="utf-8")
+print(f.read(8))#读部分内容
+f.close()
+
+f=open(r".\data.txt",'r',encoding="utf-8")
+print(f.readline())#方法二
+f.close()
+
+f=open(r".\data.txt",'r',encoding="utf-8")
+print(f.readlines())#方法三
+f.close()
+
+#写文件
+
+with open(r".\data.txt",'w',encoding="utf-8") as f:
+    f.write("我欲乘风归去，\n有恐琼楼玉宇，\n")
+    f.write("高出不深寒。\n")
+
+with open(r".\data.txt",'a',encoding="utf-8") as f:
+    f.write("起舞弄清影，\n何似在人间。\n")
